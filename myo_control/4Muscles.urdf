@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot name="flexible">
+  <!-- standard urdf -->
+  <link name="base_link">
+  </link>
+
+  <link name="link0">
+  </link>
+
+  <link name="link1">
+  </link>
+
+  <link name="link2">
+  </link>
+
+  <link name="link3">
+  </link>
+
+  <joint name="muscle0" type="revolute">
+    <parent link="base_link"/>
+    <child link="link0"/>
+    <limit effort="4000" velocity="100000"/>
+  </joint>
+
+  <joint name="muscle1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <limit effort="4000" velocity="100000"/>
+  </joint>
+
+  <joint name="muscle2" type="revolute">
+    <parent link="base_link"/>
+    <child link="link2"/>
+    <limit effort="4000" velocity="100000"/>
+  </joint>
+
+  <joint name="muscle3" type="revolute">
+    <parent link="base_link"/>
+    <child link="link3"/>
+    <limit effort="4000" velocity="100000"/>
+  </joint>
+</robot>

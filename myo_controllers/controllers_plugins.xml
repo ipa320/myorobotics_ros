@@ -1,0 +1,12 @@
+<library path="lib/libmyo_controllers">
+
+	<class
+		name="myo_controllers/ExampleController"
+		type="myo_controllers::ExampleController"
+		base_class_type="controller_interface::ControllerBase">
+		<description>
+			This is an example Controller.
+		</description>
+	</class>
+	
+</library>
