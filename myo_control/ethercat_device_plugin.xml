@@ -1,0 +1,11 @@
+<library path="lib/libmyo_control" >
+<!--
+        The following definitions are EthercatDevice plugins (they are the drivers for a certain type of ethercat slave device, determined by its product code)
+-->
+<class name="myo_control/33554434" type="SrSPIMyo" base_class_type="EthercatDevice">
+  <description>
+    RoNeX - SPI module
+  </description>
+</class>
+
+</library>
