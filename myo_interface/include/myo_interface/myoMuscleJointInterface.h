@@ -11,8 +11,8 @@ class MyoMuscleJointHandle : public hardware_interface::JointHandle
 {
 	public:
 		MyoMuscleJointHandle() {}
-		MyoMuscleJointHandle(const hardware_interface::JointHandle& js, double* displacement, double analogIn[])
-			: hardware_interface::JointHandle(js), displacement_(displacement), analogIn_(analogIn) {}
+		MyoMuscleJointHandle(const hardware_interface::JointHandle& js, double* displacement, double analogIn[], bool* digitalOut)
+			: hardware_interface::JointHandle(js), displacement_(displacement), analogIn_(analogIn), digitalOut_(digitalOut) {}
 
 		double getDisplacement() const {
 			return *displacement_;
@@ -22,9 +22,14 @@ class MyoMuscleJointHandle : public hardware_interface::JointHandle
 			return analogIn_[index];
 		}
 
+		void setDigitalOut(bool state){
+			*digitalOut_ = state;
+		}
+
 	private:
 		double* displacement_;
 		double* analogIn_;
+		bool* digitalOut_;
 };
 
 
@@ -43,9 +48,9 @@ class MyoMuscleJointInterface : public hardware_interface::HardwareInterface
 		return out;
 	}
 
-	void registerJoint(const hardware_interface::JointHandle& js, double* displacement, double analogIn[])
+	void registerJoint(const hardware_interface::JointHandle& js, double* displacement, double analogIn[], bool* digitalOut)
 	{
-		MyoMuscleJointHandle handle(js, displacement, analogIn);
+		MyoMuscleJointHandle handle(js, displacement, analogIn, digitalOut);
 		registerHandle(handle);
 	}
 

@@ -35,6 +35,8 @@ public:
     double analogIN0 = joint_.getAnalogIn(0);
     // set pwm cycle [-4000;4000]
     joint_.setCommand(200);
+    // set digitalOut
+    joint_.setDigitalOut(true);
   }
 
   void starting(const ros::Time& time) { }

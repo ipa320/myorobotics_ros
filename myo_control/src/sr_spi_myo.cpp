@@ -201,8 +201,14 @@ void SrSPIMyo::packCommand(unsigned char *buffer, bool halt, bool reset)
 	// Set Command-Type
 	command->command_type = RONEX_COMMAND_02000002_COMMAND_TYPE_NORMAL;
 	// Configure SlaveSelect on all 4 SPI-Ports
-	command->pin_output_states_pre = 0;
-	command->pin_output_states_post = PIN_OUTPUT_STATE_CS_0 | PIN_OUTPUT_STATE_CS_1 | PIN_OUTPUT_STATE_CS_2 | PIN_OUTPUT_STATE_CS_3;
+	int16u dio = 0;
+	if (joint_states_[0]->digitalOut_) dio |= PIN_OUTPUT_STATE_DIO_0;
+	if (joint_states_[1]->digitalOut_) dio |= PIN_OUTPUT_STATE_DIO_1;
+	if (joint_states_[2]->digitalOut_) dio |= PIN_OUTPUT_STATE_DIO_2;
+	if (joint_states_[3]->digitalOut_) dio |= PIN_OUTPUT_STATE_DIO_3;
+
+	command->pin_output_states_pre = dio;
+	command->pin_output_states_post = dio | PIN_OUTPUT_STATE_CS_0 | PIN_OUTPUT_STATE_CS_1 | PIN_OUTPUT_STATE_CS_2 | PIN_OUTPUT_STATE_CS_3;
 
 	for (size_t spi_index = 0; spi_index < NUM_SPI_OUTPUTS; ++spi_index)
 	{
