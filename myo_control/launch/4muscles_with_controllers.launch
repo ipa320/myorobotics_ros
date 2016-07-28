@@ -1,0 +1,29 @@
+<launch>
+
+  <include file="$(find myo_control)/launch/4muscles.launch" />
+
+  <rosparam ns="myo">
+    myo_muscle0_controller:
+      type: myo_controllers/ExampleController
+      joint: 'muscle0'
+    myo_muscle1_controller:
+      type: myo_controllers/ExampleController
+      joint: 'muscle1'
+    myo_muscle2_controller:
+      type: myo_controllers/ExampleController
+      joint: 'muscle2'
+    myo_muscle3_controller:
+      type: myo_controllers/ExampleController
+      joint: 'muscle3'
+  </rosparam>
+
+  <!-- Load the default controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="
+        myo/myo_muscle0_controller
+        myo/myo_muscle1_controller
+        myo/myo_muscle2_controller
+        myo/myo_muscle3_controller
+      " />
+
+</launch>
